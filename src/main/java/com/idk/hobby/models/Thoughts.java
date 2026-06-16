@@ -1,4 +1,4 @@
-package models;
+package com.idk.hobby.models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
