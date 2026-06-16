@@ -1,4 +1,4 @@
-package com.idk.hobby.Controller;
+package com.idk.hobby.controller;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
