@@ -19,7 +19,7 @@ import java.time.LocalDate;
 public class Thoughts {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private Long id;
     private String name;
     private LocalDate date;
     private String description;
