@@ -1,4 +1,4 @@
-package Models;
+package models;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,5 +23,6 @@ public class Thoughts {
     private String name;
     private LocalDate date;
     private String description;
+
 
 }
