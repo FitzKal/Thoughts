@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ThoughtDTO {
-    private int id;
+    private Long id;
     private String name;
     private LocalDate date;
     private String description;

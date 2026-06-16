@@ -7,17 +7,15 @@ import com.idk.hobby.models.ThoughtDTO;
 import com.idk.hobby.repositories.ThoughtRepository;
 import lombok.AllArgsConstructor;
 import com.idk.hobby.models.Thoughts;
-import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 @AllArgsConstructor
-@NoArgsConstructor
 public class ThoughtService implements ThoughtMethods {
-    ThoughtRepository thoughtRepository;
-    ThoughDTOConverter thoughDTOConverter;
+    private ThoughtRepository thoughtRepository;
+    private  ThoughDTOConverter thoughDTOConverter;
 
     @Override
     public ThoughtDTO getThoughtById(Long id) {

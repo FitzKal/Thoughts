@@ -6,6 +6,6 @@ import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
 public interface ThoughDTOConverter {
-    public ThoughtDTO thoughtTODTO(Thoughts thoughts);
-    public Thoughts DTOToThought(ThoughtDTO thoughtDTO);
+     ThoughtDTO thoughtTODTO(Thoughts thoughts);
+     Thoughts DTOToThought(ThoughtDTO thoughtDTO);
 }

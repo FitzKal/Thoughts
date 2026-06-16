@@ -16,11 +16,6 @@ import java.util.List;
 public class ThoughtController {
     private ThoughtService thoughtService;
 
-    @GetMapping
-    public String hello(){
-        return "Hello";
-    }
-
     @GetMapping("/{id}")
     public ResponseEntity<ThoughtDTO> getThoughtById(@PathVariable Long id) {
         return ResponseEntity.ok(thoughtService.getThoughtById(id));
@@ -36,13 +31,13 @@ public class ThoughtController {
         return ResponseEntity.ok(thoughtService.saveThought(thoughtDTO));
     }
 
-    @PutMapping
-    public ResponseEntity<ThoughtDTO> editThought(Long id, ThoughtDTO thoughtDTO) {
+    @PutMapping("/{id}")
+    public ResponseEntity<ThoughtDTO> editThought(@PathVariable Long id,@RequestBody ThoughtDTO thoughtDTO) {
         return ResponseEntity.ok(thoughtService.editThought(id,thoughtDTO));
     }
 
-    @DeleteMapping
-    public ResponseEntity<String> deleteThoughtById(Long id) {
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteThoughtById(@PathVariable Long id) {
         return ResponseEntity.ok(thoughtService.deleteThoughtById(id));
     }
 }
