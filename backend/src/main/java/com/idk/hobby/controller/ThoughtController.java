@@ -16,6 +16,11 @@ import java.util.List;
 public class ThoughtController {
     private ThoughtService thoughtService;
 
+    @GetMapping("/isAlive")
+    public String isAlive(){
+        return "yes";
+    }
+
     @GetMapping("/{id}")
     public ResponseEntity<ThoughtDTO> getThoughtById(@PathVariable Long id) {
         return ResponseEntity.ok(thoughtService.getThoughtById(id));
