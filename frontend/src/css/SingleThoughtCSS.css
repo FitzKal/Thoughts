@@ -6,6 +6,13 @@
     align-items: center;
     flex-wrap: wrap;
     width: 40%;
+    border-radius: 10px;
+}
+
+#background:hover{
+    transform: scale(105%);
+    background-color: #141414;
+
 }
 
 #FormTitle{
@@ -14,4 +21,12 @@
 
 .ThoughtDetails{
     display: grid;
+    grid-template-columns: 50% 50%;
+    background-color: transparent;
+}
+
+.detailText {
+    background-color: transparent;
+    color: white;
+
 }
