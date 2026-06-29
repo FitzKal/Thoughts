@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import com.idk.hobby.models.Thoughts;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -55,6 +56,7 @@ public class ThoughtService implements ThoughtMethods {
     }
 
     private void saveThought (Thoughts thoughts){
+        thoughts.setDate(LocalDate.now());
         thoughtRepository.save(thoughts);
     }
 }

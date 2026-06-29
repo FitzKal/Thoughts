@@ -1,0 +1,17 @@
+#background {
+    border: solid black;
+    background-color: #121212;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 40%;
+}
+
+#FormTitle{
+    color: white;
+}
+
+.ThoughtDetails{
+    display: grid;
+}
