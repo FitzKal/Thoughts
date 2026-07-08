@@ -30,6 +30,9 @@ export default function ThoughtPage() {
         return (
             <>
                 <h1>Thought Page</h1>
+                <div className="buttonContainer">
+                    <button className={"thoughtAdder"}>Add a new thought</button>
+                </div>
                 <div className={"ThoughContainer"}>
                     {
                         data.map((thought:ThoughtType) => {
