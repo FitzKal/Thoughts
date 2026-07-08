@@ -9,7 +9,7 @@ h1 {
 
 div.buttonContainer{
     justify-self: center;
-    margin-bottom: 15px
+    margin-bottom: 20px
 }
 
 button.thoughtAdder{
@@ -17,6 +17,12 @@ button.thoughtAdder{
     padding: 20px;
     color: white;
     background-color: rgba(7, 106, 29, 0.3);
+}
+
+button.thoughtAdder:hover{
+    background-color: rgba(13, 204, 59, 0.3);
+    transition: 0.3s;
+
 }
 
 div.ThoughContainer {
