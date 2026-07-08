@@ -7,3 +7,10 @@ export const thoughtSchema = {
 }
 
 export type thoughtRequest = z.infer<typeof thoughtSchema>
+
+export interface ThoughtType{
+    id: number,
+    name: string,
+    description: string,
+    date: Date
+}
