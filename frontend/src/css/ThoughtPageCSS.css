@@ -5,5 +5,13 @@
 h1 {
     color: gray;
     text-align: center;
+}
+
+div.ThoughContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px 40px;
 
 }

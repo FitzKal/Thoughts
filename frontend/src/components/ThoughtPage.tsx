@@ -3,6 +3,7 @@ import SingleThought from "./SingleThought.tsx";
 import {useQuery} from "@tanstack/react-query";
 import {getAllThoughts} from "../services/ThoughtService.ts";
 import {useEffect} from "react";
+import type {ThoughtType} from "../types/ThoughtType.ts";
 
 export default function ThoughtPage() {
 
@@ -29,8 +30,14 @@ export default function ThoughtPage() {
         return (
             <>
                 <h1>Thought Page</h1>
-                <div>
-                    <SingleThought thought ={data[0]}/>
+                <div className={"ThoughContainer"}>
+                    {
+                        data.map((thought:ThoughtType) => {
+                            return (
+                                <SingleThought thought={thought}/>
+                            )
+                        })
+                    }
                 </div>
             </>
         )
