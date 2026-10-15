@@ -2,8 +2,9 @@ import "../css/ThoughtPageCSS.css";
 import SingleThought from "./SingleThought.tsx";
 import {useQuery} from "@tanstack/react-query";
 import {getAllThoughts} from "../services/ThoughtService.ts";
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import type {ThoughtType} from "../types/ThoughtType.ts";
+import ThoughtCreationForm from "./ThoughtCreationForm.tsx";
 
 export default function ThoughtPage() {
 
@@ -12,6 +13,10 @@ export default function ThoughtPage() {
         queryFn: async () => await getAllThoughts(),
 
     })
+
+    const [isCreating, setIsCreating] = useState(false);
+
+
 
     useEffect(() => {
         if (isError){
@@ -25,14 +30,22 @@ export default function ThoughtPage() {
         }
     }, [data,isLoading]);
 
+    const handleCreation = ()=>{
+        setIsCreating(!isCreating)
+    }
+
 
     if (!isLoading){
         return (
             <>
                 <h1>Thought Page</h1>
                 <div className="buttonContainer">
-                    <button className={"thoughtAdder"}>Add a new thought</button>
+                    <button className={"thoughtAdder"} onClick={handleCreation}>Add a new thought</button>
                 </div>
+                {
+                    isCreating?<ThoughtCreationForm isCreating={isCreating} setIsCreating={handleCreation}/>:
+                        <></>
+                }
                 <div className={"ThoughContainer"}>
                     {
                         data.map((thought:ThoughtType) => {
