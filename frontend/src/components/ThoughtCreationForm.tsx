@@ -2,8 +2,15 @@ import {useForm} from "react-hook-form";
 import type {thoughtCreationType} from "../types/FormTypes.ts";
 import {useEffect} from "react";
 import "../css/ThoughtCreationFormCSS.css"
+import {useMutation, useQueryClient} from "@tanstack/react-query";
+import {postThought} from "../services/ThoughtService.ts";
+import type {postThoughtData} from "../types/ThoughtType.ts";
+import {toast} from "react-toastify";
+import * as axios from "axios";
 
 export default function ThoughtCreationForm(prop:{isCreating:boolean, setIsCreating:() => void}){
+    const queryClient = useQueryClient();
+
     const {handleSubmit, register, formState:{errors,isSubmitting}} = useForm<thoughtCreationType>()
     useEffect(() => {
         const dialog = document.getElementById("creationDialogue") as HTMLDialogElement;
@@ -13,6 +20,25 @@ export default function ThoughtCreationForm(prop:{isCreating:boolean, setIsCreat
         else
             dialog.close();
     }, [prop.isCreating]);
+
+    const postThoughtMutation = useMutation({
+        mutationFn:(thoughtData:postThoughtData) => postThought(thoughtData),
+        onSuccess:()=>{
+            queryClient.invalidateQueries({queryKey:["allThoughts"],exact: false});
+            toast.success("Thought added successfully!");
+        },
+        onError:(error) =>{
+            if (error instanceof Error){
+                if(axios.isAxiosError(error)){
+                    toast.error(error.response?.data.message);
+                }else {
+                    toast.error("Something went wrong");
+                    console.log((error as Error).message);
+                }
+            }
+
+        }
+    })
 
     return (
         <div className="createFromContainer">

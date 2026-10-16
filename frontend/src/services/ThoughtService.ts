@@ -1,5 +1,6 @@
 //IsAlive
 import api from "./AxiosConfig.ts";
+import type {postThoughtData} from "../types/ThoughtType.ts";
 
 export const isAlive  = async () =>{
    try {
@@ -20,4 +21,14 @@ export const getAllThoughts = async () => {
         throw error;
     }
 
+}
+
+export const postThought =  async (thoughtData:postThoughtData) => {
+    try {
+        return await api.post("/thoughts",thoughtData)
+            .then(response => response.data);
+    }catch (error){
+        console.error((error as Error).message);
+        throw error;
+    }
 }
