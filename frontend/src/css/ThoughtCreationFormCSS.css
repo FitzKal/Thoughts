@@ -1,0 +1,60 @@
+ dialog,dialog>h1,div.inputContainer,label,div.actionButtons{
+    background: #2e4285;
+}
+
+ dialog{
+     border-radius: 20px;
+     padding: 1rem;
+     transition: opacity 0.3s ease-in-out
+ }
+
+ label{
+     color: #b3adad;
+ }
+
+ input{
+     color: white;
+     border-radius: 20px;
+     border-color: black;
+     padding: 5px;
+     outline: none;
+ }
+
+ input:focus{
+     border-color: orange;
+ }
+
+ div.inputContainer{
+     display: flex;
+     flex-direction: column;
+     padding-bottom: 5px;
+ }
+
+ button{
+     border-radius: 20px;
+ }
+ .actionButtons{
+     display: grid;
+     grid-template-columns: 50% 50%;
+     gap: 5px;
+     padding-top: 1rem;
+ }
+
+ .closeButton{
+     background-color: darkred;
+ }
+
+ .closeButton:hover{
+     background-color: red;
+     transition: 0.3s;
+ }
+
+ .submitButton{
+     background-color: darkgreen;
+ }
+ .submitButton:hover{
+     background-color: green;
+     transition: 0.3s;
+ }
+
+

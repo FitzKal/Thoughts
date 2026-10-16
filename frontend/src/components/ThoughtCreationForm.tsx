@@ -1,6 +1,7 @@
 import {useForm} from "react-hook-form";
 import type {thoughtCreationType} from "../types/FormTypes.ts";
 import {useEffect} from "react";
+import "../css/ThoughtCreationFormCSS.css"
 
 export default function ThoughtCreationForm(prop:{isCreating:boolean, setIsCreating:() => void}){
     const {handleSubmit, register, formState:{errors,isSubmitting}} = useForm<thoughtCreationType>()
@@ -48,7 +49,11 @@ export default function ThoughtCreationForm(prop:{isCreating:boolean, setIsCreat
                         )}
                     </div>
                 </form>
-                <button onClick={prop.setIsCreating}>Close</button>
+                    <div className="actionButtons">
+                    <button className="closeButton"
+                    onClick={prop.setIsCreating}>Close</button>
+                    <button className="submitButton">Create</button>
+                </div>
             </dialog>
         </div>
     )
