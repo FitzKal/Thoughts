@@ -40,11 +40,15 @@ export default function ThoughtCreationForm(prop:{isCreating:boolean, setIsCreat
         }
     })
 
+    const submitHandler =(thoughtData:postThoughtData) =>{
+        postThoughtMutation.mutate(thoughtData);
+    }
+
     return (
         <div className="createFromContainer">
             <dialog id = "creationDialogue">›
                 <h1>Create a thought!</h1>
-                <form>
+                <form onSubmit={handleSubmit(submitHandler)}>
                     <div className={"inputContainer"}>
                         <label>Name of the task</label>
                         <input {...register("name")} type={"text"} placeholder={"Name"}
@@ -66,7 +70,7 @@ export default function ThoughtCreationForm(prop:{isCreating:boolean, setIsCreat
                     </div>
                     <div className={"inputContainer"}>
                         <label>Give a short description of the task</label>
-                        <input {...register("name")} type={"text"} placeholder={"Short Description of the task"}
+                        <input {...register("description")} type={"text"} placeholder={"Short Description of the task"}
                         required={false}/>
                         {errors.description && (
                             <span className="text-red-500 text-xs mt-1">
@@ -74,12 +78,12 @@ export default function ThoughtCreationForm(prop:{isCreating:boolean, setIsCreat
                              </span>
                         )}
                     </div>
-                </form>
                     <div className="actionButtons">
-                    <button className="closeButton"
-                    onClick={prop.setIsCreating}>Close</button>
-                    <button className="submitButton">Create</button>
-                </div>
+                        <button className="closeButton"
+                                onClick={prop.setIsCreating}>Close</button>
+                        <button className="submitButton" type={"submit"} disabled={isSubmitting}>Create</button>
+                    </div>
+                </form>
             </dialog>
         </div>
     )
