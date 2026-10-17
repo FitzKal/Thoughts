@@ -1,13 +1,8 @@
 package com.idk.hobby.models;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import com.idk.hobby.enums.StateOfProgress;
+import jakarta.persistence.*;
+import lombok.*;
 
 import java.time.LocalDate;
 
@@ -16,13 +11,15 @@ import java.time.LocalDate;
 @Data
 @NoArgsConstructor
 @EqualsAndHashCode
+@Builder
 public class Thoughts {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    private LocalDate date;
+    private LocalDate dateOfCreation;
+    private LocalDate dateDue;
     private String description;
-
-
+    @Enumerated(EnumType.STRING)
+    private StateOfProgress stateOfProgress;
 }
