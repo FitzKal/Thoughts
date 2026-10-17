@@ -38,7 +38,7 @@ public class ThoughtService implements ThoughtMethods {
     @Override
     public ThoughtDTO editThought(Long id, ThoughtDTO thoughtDTO) {
         var thoughtToEdit = findThoughtById(id);
-        thoughtToEdit.setDate(thoughtDTO.getDate());
+        thoughtToEdit.setDate(thoughtDTO.getDateOfCreation());
         thoughtToEdit.setName(thoughtDTO.getName());
         thoughtToEdit.setDescription(thoughtDTO.getDescription());
         saveThought(thoughtToEdit);
