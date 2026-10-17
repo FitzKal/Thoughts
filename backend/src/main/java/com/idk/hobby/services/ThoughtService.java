@@ -1,6 +1,7 @@
 package com.idk.hobby.services;
 
 import com.idk.hobby.converters.ThoughDTOConverter;
+import com.idk.hobby.enums.StateOfProgress;
 import com.idk.hobby.exceptions.ThoughtNotFoundException;
 import com.idk.hobby.interfaces.ThoughtMethods;
 import com.idk.hobby.models.ThoughtDTO;
@@ -9,6 +10,7 @@ import lombok.AllArgsConstructor;
 import com.idk.hobby.models.Thoughts;
 import org.springframework.stereotype.Service;
 
+import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -31,6 +33,8 @@ public class ThoughtService implements ThoughtMethods {
 
     @Override
     public ThoughtDTO saveThought(ThoughtDTO thoughtDTO) {
+        System.out.println(thoughtDTO);
+        System.out.println(thoughDTOConverter.DTOToThought(thoughtDTO));
         saveThought(thoughDTOConverter.DTOToThought(thoughtDTO));
         return thoughtDTO;
     }
@@ -38,7 +42,7 @@ public class ThoughtService implements ThoughtMethods {
     @Override
     public ThoughtDTO editThought(Long id, ThoughtDTO thoughtDTO) {
         var thoughtToEdit = findThoughtById(id);
-        thoughtToEdit.setDate(thoughtDTO.getDateOfCreation());
+        thoughtToEdit.setDateOfCreation(thoughtDTO.getDateOfCreation());
         thoughtToEdit.setName(thoughtDTO.getName());
         thoughtToEdit.setDescription(thoughtDTO.getDescription());
         saveThought(thoughtToEdit);
@@ -56,7 +60,19 @@ public class ThoughtService implements ThoughtMethods {
     }
 
     private void saveThought (Thoughts thoughts){
-        thoughts.setDate(LocalDate.now());
+        checkDateValidity(thoughts);
+        thoughts.setStateOfProgress(StateOfProgress.IN_PROGRESS);
+        thoughts.setDateOfCreation(LocalDate.now());
         thoughtRepository.save(thoughts);
+    }
+    private void checkDateValidity(Thoughts thoughts){
+        if (thoughts.getDateOfCreation().isBefore(LocalDate.now()) || thoughts.getDateDue().isBefore(LocalDate.now())){
+            throw new DateTimeException("The date cannot be in the past.");
+        }else if (thoughts.getDateDue().isBefore(thoughts.getDateOfCreation())){
+            throw new DateTimeException("The end date cannot be in the past");
+        }
+        else if (thoughts.getDateOfCreation() == null){
+            thoughts.setDateOfCreation(LocalDate.now());
+        }
     }
 }
