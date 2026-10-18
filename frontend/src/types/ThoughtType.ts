@@ -10,6 +10,8 @@ export interface ThoughtType{
 
 export interface postThoughtData{
     name:string,
-    date: Date,
-    description:string
+    dateOfCreation?: Date,
+    dateDue:Date,
+    description?:string,
+    stateOfProgress?:"DONE" | "IN_PROGRESS" | "EXPIRED"
 }

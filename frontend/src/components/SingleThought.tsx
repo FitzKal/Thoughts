@@ -21,11 +21,11 @@ export default function SingleThought(prop:{thought:ThoughtType}){
                 <div className={"dateTexts"}>
                     <div className="dateContainer">
                         <label htmlFor={"DateOfCreation"} className={"dateDisplayLabel"}>Date Of creation</label>
-                        <p className={"detailText"} id={"DateOfCreation"}>{prop.thought.dateDue.toString()}</p>
+                        <p className={"detailText"} id={"DateOfCreation"}>{prop.thought.dateOfCreation.toString()}</p>
                     </div>
                     <div className="dateContainer">
                         <label htmlFor={"DateDue"} className={"dateDisplayLabel"}>Date Due</label>
-                        <p className={"detailText"} id={"DateDue"}>{prop.thought.dateOfCreation.toString()}</p>
+                        <p className={"detailText"} id={"DateDue"}>{prop.thought.dateDue.toString()}</p>
                     </div>
             </div>
                 <p className={"detailText"}>{prop.thought.description}</p>

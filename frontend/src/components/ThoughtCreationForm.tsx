@@ -60,11 +60,20 @@ export default function ThoughtCreationForm(prop:{isCreating:boolean, setIsCreat
                         )}
                     </div>
                     <div className={"inputContainer"}>
-                        <label className={"creationFormLabel"}>Date for the task</label>
-                        <input {...register("date")} type={"date"} required={false}/>
-                        {errors.date && (
+                        <label className={"creationFormLabel"}>Date of the beginning for the task</label>
+                        <input {...register("dateOfCreation")} type={"date"} required={false}/>
+                        {errors.dateOfCreation && (
                             <span className="text-red-500 text-xs mt-1">
-                                    {errors.date.message}
+                                    {errors.dateOfCreation.message}
+                             </span>
+                        )}
+                    </div>
+                    <div className={"inputContainer"}>
+                        <label className={"creationFormLabel"}>The due date of the task</label>
+                        <input {...register("dateDue")} type={"date"} required={true}/>
+                        {errors.dateDue && (
+                            <span className="text-red-500 text-xs mt-1">
+                                    {errors.dateDue.message}
                              </span>
                         )}
                     </div>
