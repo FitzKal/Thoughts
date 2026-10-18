@@ -33,8 +33,6 @@ public class ThoughtService implements ThoughtMethods {
 
     @Override
     public ThoughtDTO saveThought(ThoughtDTO thoughtDTO) {
-        System.out.println(thoughtDTO);
-        System.out.println(thoughDTOConverter.DTOToThought(thoughtDTO));
         saveThought(thoughDTOConverter.DTOToThought(thoughtDTO));
         return thoughtDTO;
     }
@@ -42,9 +40,10 @@ public class ThoughtService implements ThoughtMethods {
     @Override
     public ThoughtDTO editThought(Long id, ThoughtDTO thoughtDTO) {
         var thoughtToEdit = findThoughtById(id);
-        thoughtToEdit.setDateOfCreation(thoughtDTO.getDateOfCreation());
+        thoughtToEdit.setDateDue(thoughtDTO.getDateDue());
         thoughtToEdit.setName(thoughtDTO.getName());
         thoughtToEdit.setDescription(thoughtDTO.getDescription());
+        thoughtToEdit.setStateOfProgress(thoughtDTO.getStateOfProgress());
         saveThought(thoughtToEdit);
         return thoughtDTO;
     }
@@ -66,13 +65,13 @@ public class ThoughtService implements ThoughtMethods {
         thoughtRepository.save(thoughts);
     }
     private void checkDateValidity(Thoughts thoughts){
-        if (thoughts.getDateOfCreation().isBefore(LocalDate.now()) || thoughts.getDateDue().isBefore(LocalDate.now())){
+         if (thoughts.getDateOfCreation() == null){
+            thoughts.setDateOfCreation(LocalDate.now());
+        }
+        else if (thoughts.getDateOfCreation().isBefore(LocalDate.now()) || thoughts.getDateDue().isBefore(LocalDate.now())){
             throw new DateTimeException("The date cannot be in the past.");
         }else if (thoughts.getDateDue().isBefore(thoughts.getDateOfCreation())){
             throw new DateTimeException("The end date cannot be in the past");
-        }
-        else if (thoughts.getDateOfCreation() == null){
-            thoughts.setDateOfCreation(LocalDate.now());
         }
     }
 }
