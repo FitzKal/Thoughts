@@ -1,4 +1,4 @@
- dialog,dialog>h1,div.inputContainer,label,div.actionButtons{
+ dialog,dialog>h1,div.inputContainer,label.creationFormLabel,div.actionButtons{
     background: #2e4285;
 }
 
@@ -8,7 +8,7 @@
      transition: opacity 0.3s ease-in-out
  }
 
- label{
+ label.creationFormLabel{
      color: #b3adad;
  }
 
@@ -32,6 +32,7 @@
 
  button{
      border-radius: 20px;
+     border: black;
  }
  .actionButtons{
      display: grid;

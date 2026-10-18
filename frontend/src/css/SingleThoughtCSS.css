@@ -28,7 +28,17 @@
 .dateTexts{
     background-color: transparent;
     display: grid;
+    column-gap: 5rem;
     grid-template-columns: 50% 50%;
+}
+
+.dateContainer{
+    background: transparent;
+}
+
+label.dateDisplayLabel{
+    background: transparent;
+    color: white;
 }
 
 .detailText {

@@ -50,7 +50,7 @@ export default function ThoughtCreationForm(prop:{isCreating:boolean, setIsCreat
                 <h1>Create a thought!</h1>
                 <form onSubmit={handleSubmit(submitHandler)}>
                     <div className={"inputContainer"}>
-                        <label>Name of the task</label>
+                        <label className={"creationFormLabel"}>Name of the task</label>
                         <input {...register("name")} type={"text"} placeholder={"Name"}
                         required={true}/>
                         {errors.name && (
@@ -60,7 +60,7 @@ export default function ThoughtCreationForm(prop:{isCreating:boolean, setIsCreat
                         )}
                     </div>
                     <div className={"inputContainer"}>
-                        <label>Date for the task</label>
+                        <label className={"creationFormLabel"}>Date for the task</label>
                         <input {...register("date")} type={"date"} required={false}/>
                         {errors.date && (
                             <span className="text-red-500 text-xs mt-1">
@@ -69,7 +69,7 @@ export default function ThoughtCreationForm(prop:{isCreating:boolean, setIsCreat
                         )}
                     </div>
                     <div className={"inputContainer"}>
-                        <label>Give a short description of the task</label>
+                        <label className={"creationFormLabel"}>Give a short description of the task</label>
                         <input {...register("description")} type={"text"} placeholder={"Short Description of the task"}
                         required={false}/>
                         {errors.description && (
