@@ -16,8 +16,6 @@ export default function ThoughtPage() {
 
     const [isCreating, setIsCreating] = useState(false);
 
-
-
     useEffect(() => {
         if (isError){
             console.log(error);

@@ -2,7 +2,10 @@ export interface ThoughtType{
     id: number,
     name: string,
     description: string,
-    date: Date
+    dateOfCreation: Date,
+    dateDue: Date,
+    stateOfProgress: "IN_PROGRESS" | "EXPIRED" | "DONE",
+
 }
 
 export interface postThoughtData{

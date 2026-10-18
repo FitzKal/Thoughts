@@ -20,13 +20,35 @@
 }
 
 .ThoughtDetails{
+    display: flex;
+    flex-direction: column;
+    background-color: transparent;
+}
+
+.dateTexts{
+    background-color: transparent;
     display: grid;
     grid-template-columns: 50% 50%;
-    background-color: transparent;
 }
 
 .detailText {
     background-color: transparent;
     color: white;
+}
+.red {
+    background-color: transparent;
+    color: red;
+    text-align: center;
+}
 
+.yellow {
+    background-color: transparent;
+    color: yellow;
+    text-align: center;
+}
+
+.green {
+    background-color: transparent;
+    color: green;
+    text-align: center;
 }
