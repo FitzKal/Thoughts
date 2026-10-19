@@ -1,9 +1,7 @@
 package com.idk.hobby.controller;
 
-import com.idk.hobby.interfaces.ThoughtMethods;
 import com.idk.hobby.models.ThoughtDTO;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import com.idk.hobby.services.ThoughtService;
@@ -33,7 +31,7 @@ public class ThoughtController {
 
     @PostMapping
     public ResponseEntity<ThoughtDTO> saveThought(@RequestBody ThoughtDTO thoughtDTO) {
-        return ResponseEntity.ok(thoughtService.saveThought(thoughtDTO));
+        return ResponseEntity.ok(thoughtService.postThought(thoughtDTO));
     }
 
     @PutMapping("/{id}")

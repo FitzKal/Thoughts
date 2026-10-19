@@ -32,7 +32,7 @@ public class ThoughtService implements ThoughtMethods {
     }
 
     @Override
-    public ThoughtDTO saveThought(ThoughtDTO thoughtDTO) {
+    public ThoughtDTO postThought(ThoughtDTO thoughtDTO) {
         saveThought(thoughDTOConverter.DTOToThought(thoughtDTO));
         return thoughtDTO;
     }
