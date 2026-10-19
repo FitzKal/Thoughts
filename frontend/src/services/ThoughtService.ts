@@ -12,6 +12,8 @@ export const isAlive  = async () =>{
    }
 }
 
+
+//----------GetAll----------
 export const getAllThoughts = async () => {
     try{
         return await api.get("/thoughts")
@@ -23,6 +25,18 @@ export const getAllThoughts = async () => {
 
 }
 
+//----------GetById----------
+export const getThoughtById = async (thoughtId:number)=>{
+    try{
+        return await api.get(`/thoughts/${thoughtId}`)
+            .then(response => response.data);
+    }catch (error){
+        console.error((error as Error).message);
+        throw error;
+    }
+}
+
+//----------Post----------
 export const postThought =  async (thoughtData:postThoughtData) => {
     try {
         return await api.post("/thoughts",thoughtData)
@@ -32,3 +46,15 @@ export const postThought =  async (thoughtData:postThoughtData) => {
         throw error;
     }
 }
+
+//----------Delete----------
+export const deleteThought = async (thoughtId:number) =>{
+    try{
+        return await api.delete(`/thought${thoughtId}`)
+            .then(response => response.data);
+    }catch (error) {
+        console.error((error as Error).message);
+        throw error;
+    }
+}
+
