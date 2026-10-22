@@ -26,6 +26,7 @@ export default function ThoughtCreationForm(prop:{isCreating:boolean, setIsCreat
         onSuccess:()=>{
             queryClient.invalidateQueries({queryKey:["allThoughts"],exact: false});
             toast.success("Thought added successfully!");
+            prop.setIsCreating();
         },
         onError:(error) =>{
             if (error instanceof Error){
