@@ -7,12 +7,41 @@
     flex-wrap: wrap;
     width: 40%;
     border-radius: 10px;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 }
 
 #background:hover{
     transform: scale(105%);
     background-color: #141414;
 
+}
+
+.actionButtonContainer{
+    background: transparent;
+    display: flex;
+    gap: 20rem;
+}
+
+.deleteThoughtButton{
+    color: white;
+    background: darkred;
+}
+
+.deleteThoughtButton:hover{
+    background-color: #c51b1b;
+    transition: 0.3s;
+}
+
+.editThoughtButton{
+    color: white;
+    background: orange;
+    padding: 0.5rem ;
+}
+
+.editThoughtButton:hover{
+    background-color: #e6ae43;
+    transition: 0.3s;
 }
 
 #FormTitle{

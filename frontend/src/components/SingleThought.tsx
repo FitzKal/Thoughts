@@ -16,6 +16,10 @@ export default function SingleThought(prop:{thought:ThoughtType}){
 
     return (
         <div id={"background"}>
+            <div className="actionButtonContainer">
+                <button className="editThoughtButton">Edit</button>
+                <button className="deleteThoughtButton">X</button>
+            </div>
             <h2 id={"FormTitle"}>{prop.thought.name}</h2>
             <div className={"ThoughtDetails"}>
                 <div className={"dateTexts"}>
