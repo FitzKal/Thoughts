@@ -1,7 +1,10 @@
 import "../css/SingleThoughtCSS.css"
 import type {ThoughtType} from "../types/ThoughtType.ts";
+import {useState} from "react";
+import EditThoughtForm from "./EditThoughtForm.tsx";
 
 export default function SingleThought(prop:{thought:ThoughtType}){
+    const[isEditing, setIsEditing] = useState(false);
 
     const progressionColour = (progress:string)=>{
         switch (progress){
@@ -14,11 +17,20 @@ export default function SingleThought(prop:{thought:ThoughtType}){
         }
     }
 
+    const handleEditing = () => {
+        setIsEditing(!isEditing);
+    }
+
     return (
         <div id={"background"}>
             <div className="actionButtonContainer">
-                <button className="editThoughtButton">Edit</button>
+                <button className="editThoughtButton" onClick={handleEditing}>Edit</button>
                 <button className="deleteThoughtButton">X</button>
+            </div>
+            <div className="editFormContainer">
+                {
+                    isEditing?<EditThoughtForm handleEditing={handleEditing} thoughtDetail={prop.thought}/>:<></>
+                }
             </div>
             <h2 id={"FormTitle"}>{prop.thought.name}</h2>
             <div className={"ThoughtDetails"}>

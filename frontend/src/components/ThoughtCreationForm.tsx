@@ -1,5 +1,5 @@
 import {useForm} from "react-hook-form";
-import type {thoughtCreationType} from "../types/FormTypes.ts";
+import {thoughtCreationSchema, type thoughtCreationType} from "../types/FormTypes.ts";
 import {useEffect} from "react";
 import "../css/ThoughtCreationFormCSS.css"
 import {useMutation, useQueryClient} from "@tanstack/react-query";
@@ -7,11 +7,14 @@ import {postThought} from "../services/ThoughtService.ts";
 import type {postThoughtData} from "../types/ThoughtType.ts";
 import {toast} from "react-toastify";
 import * as axios from "axios";
+import {zodResolver} from "@hookform/resolvers/zod";
 
 export default function ThoughtCreationForm(prop:{isCreating:boolean, setIsCreating:() => void}){
     const queryClient = useQueryClient();
 
-    const {handleSubmit, register, formState:{errors,isSubmitting}} = useForm<thoughtCreationType>()
+    const {handleSubmit, register, formState:{errors,isSubmitting}} = useForm<thoughtCreationType>({
+        resolver:zodResolver(thoughtCreationSchema)
+    })
     useEffect(() => {
         const dialog = document.getElementById("creationDialogue") as HTMLDialogElement;
         if (prop.isCreating){
