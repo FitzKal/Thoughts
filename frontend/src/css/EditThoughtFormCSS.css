@@ -1,16 +1,116 @@
-#editDialog{
-    padding: 1rem;
-    border-radius: 20px;
-    animation: pop-in 0.3s forwards;
+#editDialog {
+    background: var(--bg-card, #1e293b);
+    color: var(--text-primary, #f8fafc);
+    border: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.1));
+    border-radius: 16px;
+    padding: 2rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(255, 255, 255, 0.05);
+    width: 90%;
+    max-width: 460px;
+    box-sizing: border-box;
+    animation: pop-in 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+#editDialog::backdrop {
+    background: rgba(11, 15, 25, 0.75);
+    backdrop-filter: blur(6px);
+}
+
+.editTitleText {
+    color: var(--text-primary, #ffffff);
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0 0 1.5rem 0;
+    text-align: center;
+    letter-spacing: -0.02em;
+}
+
+.editThoughtForm {
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.editInputContainer {
+    background: transparent;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.editFormLabel {
+    color: var(--text-secondary, #94a3b8);
+    font-size: 0.85rem;
+    font-weight: 500;
+}
+
+#editDialog input {
+    background: var(--bg-input, #0f172a);
+    color: var(--text-primary, #f8fafc);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 10px;
+    padding: 0.7rem 0.9rem;
+    font-size: 0.95rem;
+    outline: none;
+    box-sizing: border-box;
+    width: 100%;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+#editDialog input:focus {
+    border-color: var(--primary, #6366f1);
+    background: #131d31;
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
+}
+
+.editButtonContainer {
+    background: transparent;
+    display: flex;
+    justify-content: flex-end;
+    gap: 0.75rem;
+    margin-top: 1.75rem;
+}
+
+.closeEdit, .editButton {
+    border-radius: 10px;
+    border: none;
+    padding: 0.7rem 1.25rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.closeEdit {
+    background: rgba(255, 255, 255, 0.08);
+    color: #cbd5e1;
+}
+
+.closeEdit:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff;
+}
+
+.editButton {
+    background: var(--primary, #6366f1);
+    color: #ffffff;
+    box-shadow: 0 4px 14px var(--primary-glow, rgba(99, 102, 241, 0.35));
+}
+
+.editButton:hover {
+    background: var(--primary-hover, #4f46e5);
+    box-shadow: 0 6px 18px rgba(99, 102, 241, 0.5);
+    transform: translateY(-1px);
 }
 
 @keyframes pop-in {
     from {
         opacity: 0;
-        transform: scale(95%) translateY(10px);
+        transform: scale(0.96) translateY(8px);
     }
-    to{
+    to {
         opacity: 1;
-        transform: scale(100%) translateY(0);
+        transform: scale(1) translateY(0);
     }
 }
