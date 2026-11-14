@@ -1,93 +1,140 @@
 #background {
-    border: solid black;
-    background-color: #121212;
+    background-color: var(--bg-card, #1e293b);
+    border: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.08));
+    border-radius: 16px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.35);
     display: flex;
     flex-direction: column;
+    width: 320px;
+    padding: 1.5rem;
+    box-sizing: border-box;
+    transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), 
+                box-shadow 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                border-color 0.25s ease;
+}
+
+#background:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 35px -8px rgba(0, 0, 0, 0.5), 0 0 0 1px var(--border-hover, rgba(99, 102, 241, 0.35));
+    border-color: var(--border-hover, rgba(99, 102, 241, 0.35));
+}
+
+.actionButtonContainer {
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
-    width: 40%;
-    border-radius: 10px;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    width: 100%;
+    margin-bottom: 0.75rem;
 }
 
-#background:hover{
-    transform: scale(105%);
-    background-color: #141414;
-
+.deleteThoughtButton {
+    color: #f43f5e;
+    background: rgba(244, 63, 94, 0.1);
+    border: 1px solid rgba(244, 63, 94, 0.2);
+    border-radius: 8px;
+    padding: 0.35rem 0.65rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
-.actionButtonContainer{
-    background: transparent;
-    display: flex;
-    gap: 30rem;
+.deleteThoughtButton:hover {
+    background: #f43f5e;
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(244, 63, 94, 0.35);
 }
 
-.deleteThoughtButton{
-    color: white;
-    background: darkred;
+.editThoughtButton {
+    color: #818cf8;
+    background: rgba(99, 102, 241, 0.12);
+    border: 1px solid rgba(99, 102, 241, 0.25);
+    border-radius: 8px;
+    padding: 0.35rem 0.85rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
 
-.deleteThoughtButton:hover{
-    background-color: #c51b1b;
-    transition: 0.3s;
+.editThoughtButton:hover {
+    background: #6366f1;
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.35);
 }
 
-.editThoughtButton{
-    color: white;
-    background: orange;
-    padding: 0.5rem ;
+#FormTitle {
+    color: var(--text-primary, #f8fafc);
+    font-size: 1.35rem;
+    font-weight: 600;
+    margin: 0.25rem 0 1rem 0;
+    letter-spacing: -0.02em;
 }
 
-.editThoughtButton:hover{
-    background-color: #e6ae43;
-    transition: 0.3s;
-}
-
-#FormTitle{
-    color: white;
-}
-
-.ThoughtDetails{
+.ThoughtDetails {
     display: flex;
     flex-direction: column;
-    background-color: transparent;
+    gap: 0.75rem;
 }
 
-.dateTexts{
-    background-color: transparent;
+.dateTexts {
     display: grid;
-    column-gap: 5rem;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    background: rgba(15, 23, 42, 0.4);
+    padding: 0.75rem;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
 }
 
-.dateContainer{
-    background: transparent;
+.dateContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
 }
 
-label.dateDisplayLabel{
-    background: transparent;
-    color: white;
+label.dateDisplayLabel {
+    color: var(--text-muted, #64748b);
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
 }
 
 .detailText {
-    background-color: transparent;
-    color: white;
-}
-.red {
-    background-color: transparent;
-    color: red;
-    text-align: center;
+    color: var(--text-secondary, #cbd5e1);
+    font-size: 0.875rem;
+    margin: 0;
+    line-height: 1.45;
 }
 
-.yellow {
-    background-color: transparent;
-    color: yellow;
-    text-align: center;
+/* Progress Status Badges */
+.green, .yellow, .red {
+    display: inline-block;
+    align-self: flex-start;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-top: 0.5rem;
 }
 
 .green {
-    background-color: transparent;
-    color: green;
-    text-align: center;
+    color: #34d399;
+    background: rgba(16, 185, 129, 0.12);
+    border: 1px solid rgba(16, 185, 129, 0.25);
+}
+
+.yellow {
+    color: #fbbf24;
+    background: rgba(245, 158, 11, 0.12);
+    border: 1px solid rgba(245, 158, 11, 0.25);
+}
+
+.red {
+    color: #f87171;
+    background: rgba(239, 68, 68, 0.12);
+    border: 1px solid rgba(239, 68, 68, 0.25);
 }
