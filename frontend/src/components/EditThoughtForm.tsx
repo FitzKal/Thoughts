@@ -32,18 +32,18 @@ export default function EditThoughtForm(prop:{handleEditing: () => void, thought
                         <input {...register("name")} type="text" className="text-white rounded-[20px] border border-black p-1.5 outline-none focus:border-orange-500 bg-transparent transition-colors"/></div>
                     <div className="editInputContainer bg-[#2e4285] flex flex-col pb-1.5">
                         <label className="editFormLabel text-slate-100 bg-transparent text-sm mb-1">Date of the beginning of the task</label>
-                        <input {...register("dateOfCreation")} type="date" className="text-white rounded-[20px] border border-black p-1.5 outline-none focus:border-orange-500 bg-transparent transition-colors"/></div>
+                        <input {...register("dateOfCreation",{valueAsDate: true})} type="date" className="text-white rounded-[20px] border border-black p-1.5 outline-none focus:border-orange-500 bg-transparent transition-colors"/></div>
                     <div className="editInputContainer bg-[#2e4285] flex flex-col pb-1.5">
                         <label className="editFormLabel text-slate-100 bg-transparent text-sm mb-1">The due date of the task</label>
-                        <input {...register("dateDue")} type="date" className="text-white rounded-[20px] border border-black p-1.5 outline-none focus:border-orange-500 bg-transparent transition-colors"/></div>
+                        <input {...register("dateDue",{valueAsDate: true})} type="date" className="text-white rounded-[20px] border border-black p-1.5 outline-none focus:border-orange-500 bg-transparent transition-colors"/></div>
                     <div className="editInputContainer bg-[#2e4285] flex flex-col pb-1.5">
                         <label className="editFormLabel text-slate-100 bg-transparent text-sm mb-1">Short description of the task</label>
                         <input {...register("description")} type="text" className="text-white rounded-[20px] border border-black p-1.5 outline-none focus:border-orange-500 bg-transparent transition-colors"/></div>
+                    <div className="editButtonContainer bg-transparent grid grid-cols-2 gap-1.5 pt-4">
+                        <button className="closeEdit rounded-[20px] border-none text-white bg-[#8b0000] hover:bg-red-600 py-1.5 px-4 cursor-pointer transition-colors duration-300" onClick={prop.handleEditing}>Close</button>
+                        <button className="editButton rounded-[20px] border-none text-white bg-[#ff8c00] hover:bg-orange-500 py-1.5 px-4 cursor-pointer transition-colors duration-300" onClick={prop.handleEditing}>Submit</button>
+                    </div>
                 </form>
-                <div className="editButtonContainer bg-transparent grid grid-cols-2 gap-1.5 pt-4">
-                    <button className="closeEdit rounded-[20px] border-none text-white bg-[#8b0000] hover:bg-red-600 py-1.5 px-4 cursor-pointer transition-colors duration-300" onClick={prop.handleEditing}>Close</button>
-                    <button className="editButton rounded-[20px] border-none text-white bg-[#ff8c00] hover:bg-orange-500 py-1.5 px-4 cursor-pointer transition-colors duration-300" onClick={prop.handleEditing}>Submit</button>
-                </div>
             </dialog>
         </div>
     )

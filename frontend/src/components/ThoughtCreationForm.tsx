@@ -44,6 +44,7 @@ export default function ThoughtCreationForm(prop:{isCreating:boolean, setIsCreat
     })
 
     const submitHandler =(thoughtData:postThoughtData) =>{
+        console.log(thoughtData)
         postThoughtMutation.mutate(thoughtData);
     }
 
@@ -64,7 +65,7 @@ export default function ThoughtCreationForm(prop:{isCreating:boolean, setIsCreat
                     </div>
                     <div className="inputContainer bg-[#2e4285] flex flex-col pb-1.5">
                         <label className="creationFormLabel text-[#b3adad] bg-transparent text-sm mb-1">Date of the beginning for the task</label>
-                        <input {...register("dateOfCreation")} type={"date"} required={false} className="text-white rounded-[20px] border border-black p-1.5 outline-none focus:border-orange-500 bg-transparent transition-colors"/>
+                        <input {...register("dateOfCreation", {valueAsDate: true})} type={"date"} required={false} className="text-white rounded-[20px] border border-black p-1.5 outline-none focus:border-orange-500 bg-transparent transition-colors"/>
                         {errors.dateOfCreation && (
                             <span className="text-red-500 text-xs mt-1">
                                     {errors.dateOfCreation.message}
@@ -73,7 +74,7 @@ export default function ThoughtCreationForm(prop:{isCreating:boolean, setIsCreat
                     </div>
                     <div className="inputContainer bg-[#2e4285] flex flex-col pb-1.5">
                         <label className="creationFormLabel text-[#b3adad] bg-transparent text-sm mb-1">The due date of the task</label>
-                        <input {...register("dateDue")} type={"date"} required={true} className="text-white rounded-[20px] border border-black p-1.5 outline-none focus:border-orange-500 bg-transparent transition-colors"/>
+                        <input {...register("dateDue", {valueAsDate: true})} type={"date"} required={true} className="text-white rounded-[20px] border border-black p-1.5 outline-none focus:border-orange-500 bg-transparent transition-colors"/>
                         {errors.dateDue && (
                             <span className="text-red-500 text-xs mt-1">
                                     {errors.dateDue.message}
@@ -92,8 +93,9 @@ export default function ThoughtCreationForm(prop:{isCreating:boolean, setIsCreat
                     </div>
                     <div className="actionButtons bg-[#2e4285] grid grid-cols-2 gap-1.5 pt-4">
                         <button className="closeButton rounded-[20px] border-none text-white bg-[#8b0000] hover:bg-red-600 py-1.5 px-4 cursor-pointer transition-colors duration-300"
-                                onClick={prop.setIsCreating}>Close</button>
-                        <button className="submitButton rounded-[20px] border-none text-white bg-[#006400] hover:bg-green-600 py-1.5 px-4 cursor-pointer transition-colors duration-300 disabled:opacity-50" type={"submit"} disabled={isSubmitting}>Create</button>
+                                onClick={prop.setIsCreating} type={"button"}>Close</button>
+                        <button className="submitButton rounded-[20px] border-none text-white bg-[#006400] hover:bg-green-600 py-1.5 px-4 cursor-pointer transition-colors duration-300 disabled:opacity-50"
+                                type="submit" disabled={isSubmitting}>{isSubmitting ? "Creating...": "Create"}</button>
                     </div>
                 </form>
             </dialog>
