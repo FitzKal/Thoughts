@@ -1,6 +1,6 @@
 import {useForm} from "react-hook-form";
 import {thoughtCreationSchema, type thoughtCreationType} from "../types/FormTypes.ts";
-import {useEffect} from "react";
+import {useEffect, useRef} from "react";
 import {useMutation, useQueryClient} from "@tanstack/react-query";
 import {postThought} from "../services/ThoughtService.ts";
 import type {postThoughtData} from "../types/ThoughtType.ts";
@@ -10,17 +10,17 @@ import {zodResolver} from "@hookform/resolvers/zod";
 
 export default function ThoughtCreationForm(prop:{isCreating:boolean, setIsCreating:() => void}){
     const queryClient = useQueryClient();
+    const dialogRef = useRef<HTMLDialogElement>(null);
 
     const {handleSubmit, register, formState:{errors,isSubmitting}} = useForm<thoughtCreationType>({
         resolver:zodResolver(thoughtCreationSchema)
     })
     useEffect(() => {
-        const dialog = document.getElementById("creationDialogue") as HTMLDialogElement;
         if (prop.isCreating){
-            dialog.showModal();
+            dialogRef.current?.showModal();
         }
         else
-            dialog.close();
+            dialogRef.current?.close();
     }, [prop.isCreating]);
 
     const postThoughtMutation = useMutation({
@@ -45,12 +45,13 @@ export default function ThoughtCreationForm(prop:{isCreating:boolean, setIsCreat
 
     const submitHandler =(thoughtData:postThoughtData) =>{
         console.log(thoughtData)
-        postThoughtMutation.mutate(thoughtData);
+         postThoughtMutation.mutate(thoughtData);
     }
 
     return (
-        <div className="createFromContainer">
-            <dialog id="creationDialogue" className="bg-[#2e4285] rounded-[20px] p-4 animate-[pop-in_0.3s_cubic-bezier(0.175,0.885,0.32,1.2)_forwards] backdrop:bg-black/50 border-none outline-none text-white max-w-md w-full">
+        <div className="createFromContainer flex items-center justify-center">
+            <dialog ref={dialogRef} className="bg-[#2e4285] rounded-[20px]
+            p-4 animate-[pop-in_0.3s_cubic-bezier(0.175,0.885,0.32,1.2)_forwards] backdrop:bg-black/50 border-none outline-none text-white max-w-md w-full m-auto">
                 <h1 className="text-white text-xl font-bold text-center mb-4 bg-transparent">Create a thought!</h1>
                 <form className="bg-transparent flex flex-col gap-2" onSubmit={handleSubmit(submitHandler)}>
                     <div className="inputContainer bg-[#2e4285] flex flex-col pb-1.5">

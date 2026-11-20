@@ -40,7 +40,7 @@ export const getThoughtById = async (thoughtId:number)=>{
 export const postThought =  async (thoughtData:postThoughtData) => {
     try {
         return await api.post("/thoughts",thoughtData)
-            .then(response => response.data);
+            .then(response => response.data)
     }catch (error){
         console.error((error as Error).message);
         throw error;
@@ -50,7 +50,7 @@ export const postThought =  async (thoughtData:postThoughtData) => {
 //----------Delete----------
 export const deleteThought = async (thoughtId:number) =>{
     try{
-        return await api.delete(`/thought${thoughtId}`)
+        return await api.delete(`/thoughts/${thoughtId}`)
             .then(response => response.data);
     }catch (error) {
         console.error((error as Error).message);
@@ -58,3 +58,13 @@ export const deleteThought = async (thoughtId:number) =>{
     }
 }
 
+//----------Edit----------
+export const editThought = async (editData:postThoughtData,thoughtId:number) => {
+    try {
+        return await api.put(`/thoughts/${thoughtId}`, editData)
+            .then(response => response.data)
+    }catch (error){
+        console.log(error);
+        throw error;
+    }
+}
