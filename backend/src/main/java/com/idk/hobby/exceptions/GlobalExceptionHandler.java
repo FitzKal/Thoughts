@@ -13,4 +13,9 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(thoughtNotFoundException.getMessage());
     }
 
+    @ExceptionHandler(ThoughtDateException.class)
+    public ResponseEntity<String> ThoughtDateExceptionHandler(ThoughtDateException thoughtDateException){
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(thoughtDateException.getMessage());
+    }
+
 }
