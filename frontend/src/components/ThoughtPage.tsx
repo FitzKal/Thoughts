@@ -14,6 +14,7 @@ export default function ThoughtPage() {
     })
 
     const [isCreating, setIsCreating] = useState(false);
+    const [isDeleting, setIsDeleting] = useState(false);
 
     useEffect(() => {
         if (isError){
@@ -29,6 +30,10 @@ export default function ThoughtPage() {
 
     const handleCreation = ()=>{
         setIsCreating(!isCreating)
+    }
+
+    const handleDeleting = () =>{
+        setIsDeleting(!isDeleting)
     }
 
 
