@@ -2,6 +2,7 @@ package com.idk.hobby.services;
 
 import com.idk.hobby.converters.ThoughDTOConverter;
 import com.idk.hobby.enums.StateOfProgress;
+import com.idk.hobby.exceptions.ThoughtDateException;
 import com.idk.hobby.exceptions.ThoughtNotFoundException;
 import com.idk.hobby.interfaces.ThoughtMethods;
 import com.idk.hobby.models.ThoughtDTO;
@@ -40,11 +41,14 @@ public class ThoughtService implements ThoughtMethods {
     @Override
     public ThoughtDTO editThought(Long id, ThoughtDTO thoughtDTO) {
         var thoughtToEdit = findThoughtById(id);
+        if (thoughtDTO.getDateDue().isBefore(LocalDate.now())){
+            throw new ThoughtDateException("The due date cannot be in the past.");
+        }
         thoughtToEdit.setDateDue(thoughtDTO.getDateDue());
         thoughtToEdit.setName(thoughtDTO.getName());
         thoughtToEdit.setDescription(thoughtDTO.getDescription());
         thoughtToEdit.setStateOfProgress(thoughtDTO.getStateOfProgress());
-        saveThought(thoughtToEdit);
+        thoughtRepository.save(thoughtToEdit);
         return thoughtDTO;
     }
 
@@ -69,9 +73,9 @@ public class ThoughtService implements ThoughtMethods {
             thoughts.setDateOfCreation(LocalDate.now());
         }
         else if (thoughts.getDateOfCreation().isBefore(LocalDate.now()) || thoughts.getDateDue().isBefore(LocalDate.now())){
-            throw new DateTimeException("The date cannot be in the past.");
+            throw new ThoughtDateException("The date cannot be in the past.");
         }else if (thoughts.getDateDue().isBefore(thoughts.getDateOfCreation())){
-            throw new DateTimeException("The end date cannot be in the past");
+            throw new ThoughtDateException("The end date cannot be in the past");
         }
     }
 }
